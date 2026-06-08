@@ -52,6 +52,7 @@ make docker-down
 - [docs/02-todolist.md](docs/02-todolist.md) — 可勾选清单
 - [docs/03-validation.md](docs/03-validation.md) — 验证集
 - [docs/04-review-notes.md](docs/04-review-notes.md) — 评审笔记
+- [docs/05-codex-handoff.md](docs/05-codex-handoff.md) — Codex 外包包
 - [docs/adr/](docs/adr/) — 架构决策记录
 - [CLAUDE.md](CLAUDE.md) — 给协作者 / Claude 的工作坐标系
 
