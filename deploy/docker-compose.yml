@@ -1,0 +1,23 @@
+services:
+  newagentic:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_PATH=/app/data/agentic.db
+      - LLM_GATEWAY_BASE_URL=${LLM_GATEWAY_BASE_URL:-https://api.openai.com/v1}
+      - LLM_GATEWAY_API_KEY=${LLM_GATEWAY_API_KEY:-}
+      - LLM_DEFAULT_MODEL=${LLM_DEFAULT_MODEL:-claude-sonnet-4-6}
+      - AGENTS_DIR=/app/agents
+      - LOG_LEVEL=INFO
+      - LOG_FORMAT=json
+    volumes:
+      - ../data:/app/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0) if urllib.request.urlopen('http://localhost:8000/healthz').status==200 else sys.exit(1)"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    stop_grace_period: 30s
